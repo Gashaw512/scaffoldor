@@ -31,14 +31,27 @@ pip install -e .
 scaffoldor my-awesome-project
 ```
 
-Creates this:
+## Creates this:
 
 my-awesome-project/
 ├── backend/
+│   └── app/
+│       ├── api/v1/
+│       ├── core/
+│       ├── models/
+│       ├── schemas/
+│       └── services/
 ├── frontend/
+│   └── src/
+│       ├── components/
+│       ├── pages/
+│       ├── services/
+│       └── context/
 ├── auth/
+│   └── keycloak-config/
 ├── infra/
 ├── docs/
 ├── .env.example
 ├── docker-compose.yml
 └── README.md
+
