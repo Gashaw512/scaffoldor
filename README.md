@@ -66,6 +66,18 @@ scaffoldor my-awesome-project --path ./projects --verbose
 
 ```
 
+### CLI Options
+
+| Flag         | Description                                      | Default           |
+| ------------ | ------------------------------------------------ | ----------------- |
+| `-p, --path`     | Parent directory to create the project in      | Current directory |
+| `-t, --template` | Project template to use (JSON files in templates/) | `default`         |
+| `--dry-run`      | Show actions without creating files or folders | False             |
+| `-v, --verbose`  | Show detailed output                            | False             |
+| `--version`      | Show scaffoldor version                         | N/A               |
+| `--init`         | Initialize a new project template interactively | N/A               |
+
+
 ### 📁 Creates This Structure
 
 ```text
