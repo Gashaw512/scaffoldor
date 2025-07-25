@@ -1,34 +1,35 @@
 import sys
 from pathlib import Path
+import json
 
-BASE_STRUCTURE = {
-    "backend": ["app/api/v1", "app/core", "app/models", "app/schemas", "app/services"],
-    "frontend": ["src/components", "src/pages", "src/services", "src/context"],
-    "auth": ["keycloak-config"],
-    "infra": [],
-    "docs": [],
-}
+def load_template(template_name: str) -> dict:
+    """Load project structure template from JSON file."""
+    templates_dir = Path(__file__).parent / "templates"
+    template_path = templates_dir / f"{template_name}.json"
+    if not template_path.exists():
+        print(f"[Error] Template '{template_name}' not found. Available templates: default")
+        sys.exit(1)
+    with template_path.open() as f:
+        return json.load(f)
 
 README_TEMPLATE = """\
 # {project_name}
 
-Welcome to the {project_name} project!
-
-## Overview
-
-This project scaffolded by scaffoldor CLI tool.
+Welcome to the {project_name} project scaffolded by scaffoldor!
 
 ## Project Structure
 
-- backend/ - FastAPI backend service
-- frontend/ - React + Tailwind frontend app
-- auth/ - Keycloak or authentication-related configs
-- infra/ - Docker, Kubernetes manifests, and deployment configs
-- docs/ - Project documentation
+- backend/ - FastAPI backend
+- frontend/ - React + Tailwind frontend
+- auth/ - Keycloak configs
+- infra/ - Docker, deployment configs
+- docs/ - Documentation
 
 ## Getting Started
 
-Instructions to setup and run your project...
+1. Navigate to the project folder: `cd {project_name}`
+2. Customize your project
+3. Build & run your app!
 
 ---
 
@@ -39,7 +40,7 @@ your.email@example.com
 """
 
 ENV_EXAMPLE = """\
-# Environment variables example
+# Example environment variables
 
 DATABASE_URL=postgresql://user:password@localhost:5432/dbname
 KEYCLOAK_URL=http://localhost:8080
@@ -80,27 +81,56 @@ services:
     command: start-dev
 """
 
-def create_files(project_root: Path, project_name: str):
-    (project_root / "README.md").write_text(README_TEMPLATE.format(project_name=project_name))
-    (project_root / ".env.example").write_text(ENV_EXAMPLE)
-    (project_root / "docker-compose.yml").write_text(DOCKER_COMPOSE_YML)
+def create_files(project_root: Path, project_name: str, dry_run: bool = False, verbose: bool = False) -> None:
+    files_to_create = {
+        "README.md": README_TEMPLATE.format(project_name=project_name),
+        ".env.example": ENV_EXAMPLE,
+        "docker-compose.yml": DOCKER_COMPOSE_YML,
+    }
+    for filename, content in files_to_create.items():
+        file_path = project_root / filename
+        if dry_run:
+            if verbose:
+                print(f"[Dry-run] Would create file: {file_path}")
+            continue
+        if verbose:
+            print(f"Creating file: {file_path}")
+        file_path.write_text(content)
 
-def create_structure(project_name: str):
-    project_root = Path(project_name).resolve()
-    if project_root.exists():
-        print(f"[Error] Directory '{project_root}' already exists. Please choose a different project name.")
+def create_structure(
+    project_path: Path,
+    template_name: str = "default",
+    dry_run: bool = False,
+    verbose: bool = False,
+) -> None:
+    if project_path.exists():
+        print(f"[Error] Directory '{project_path}' already exists. Choose a different name or path.")
         sys.exit(1)
 
-    print(f"Creating project folder at {project_root}")
-    project_root.mkdir(parents=True, exist_ok=False)
+    if verbose or dry_run:
+        print(f"{'[Dry-run] ' if dry_run else ''}Creating project at {project_path}")
 
-    for folder, subfolders in BASE_STRUCTURE.items():
-        folder_path = project_root / folder
-        folder_path.mkdir(parents=True, exist_ok=True)
+    if dry_run:
+        print("[Dry-run] Skipping actual creation.")
+        return
+
+    project_path.mkdir(parents=True)
+
+    structure = load_template(template_name)
+
+    for folder, subfolders in structure.items():
+        folder_path = project_path / folder
+        if verbose:
+            print(f"Creating folder: {folder_path}")
+        folder_path.mkdir(exist_ok=True)
         for subfolder in subfolders:
-            (folder_path / subfolder).mkdir(parents=True, exist_ok=True)
+            subfolder_path = folder_path / subfolder
+            if verbose:
+                print(f"Creating subfolder: {subfolder_path}")
+            subfolder_path.mkdir(parents=True, exist_ok=True)
 
-    create_files(project_root, project_name)
+    create_files(project_path, project_path.name, dry_run=dry_run, verbose=verbose)
 
-    print(f"\n🎉 Project '{project_name}' scaffolded successfully!")
-    print(f"Next steps:\n  cd {project_name}\n  # Start building your secure app!\n")
+    if verbose:
+        print(f"Project '{project_path.name}' scaffolded successfully!\n")
+        print(f"Next steps:\n  cd {project_path}\n  # Start building your secure app!\n")

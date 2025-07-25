@@ -1,8 +1,6 @@
-__pycache__/
-*.pyc
-*.pyo
-*.egg-info/
-.env/
 env/
+__pycache__/
 dist/
-build/
+*.egg-info/
+.vscode/
+.pytest_cache/

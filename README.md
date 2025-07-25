@@ -8,32 +8,47 @@
 
 Generate a ready-to-use secure app structure with:
 
-- 🔧 Backend (FastAPI, Python)
-- 🎨 Frontend (React + Tailwind)
-- 🔐 Auth (Keycloak)
-- 🛠️ Infra (Docker Compose)
-- 📄 Docs & Env examples
+- 🔧 Backend (FastAPI, Python)  
+- 🎨 Frontend (React + Tailwind)  
+- 🔐 Auth (Keycloak)  
+- 🛠️ Infra (Docker Compose)  
+- 📄 Docs & Env examples  
 
 ---
 
 ## ⚙️ Installation
 
 ```bash
-# Clone & install locally
 git clone https://github.com/yourusername/scaffoldor.git
 cd scaffoldor
 python -m venv env
-source env/bin/activate  # or .\env\Scripts\activate on Windows
+# Activate env:
+# macOS/Linux:
+source env/bin/activate
+# Windows:
+.\env\Scripts\activate
 pip install -e .
+
 ```
 ## Usage
 ```bash
-scaffoldor my-awesome-project
+scaffoldor my-awesome-project --path ./projects --verbose
+
+```
+
+## CLI Options
+```text
+-p, --path: Parent directory to create the project in (default: current directory)
+
+-t, --template: Project template to use (default: default)
+
+--dry-run: Show actions without creating files or directories
+
+-v, --verbose: Show detailed output
+
 ```
 
 ### 📁 Creates This Structure
-
-
 
 ```text
 my-awesome-project/
