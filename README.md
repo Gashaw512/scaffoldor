@@ -54,17 +54,6 @@ scaffoldor my-awesome-project --path ./projects --verbose
 
 ```
 
-## CLI Options
-```text
--p, --path: Parent directory to create the project in (default: current directory)
-
--t, --template: Project template to use (default: default)
-
---dry-run: Show actions without creating files or directories
-
--v, --verbose: Show detailed output
-
-```
 
 ### CLI Options
 
