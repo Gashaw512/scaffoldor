@@ -31,7 +31,7 @@ pip install -e .
 scaffoldor my-awesome-project
 ```
 
-## Creates this:
+### 📁 Creates This Structure
 
 my-awesome-project/
 ├── backend/
@@ -54,4 +54,5 @@ my-awesome-project/
 ├── .env.example
 ├── docker-compose.yml
 └── README.md
+
 
