@@ -35,32 +35,6 @@ scaffoldor my-awesome-project
 
 my-awesome-project/
 ├── backend/
-│ └── app/
-│ ├── api/v1/
-│ ├── core/
-│ ├── models/
-│ ├── schemas/
-│ └── services/
-├── frontend/
-│ └── src/
-│ ├── components/
-│ ├── pages/
-│ ├── services/
-│ └── context/
-├── auth/
-│ └── keycloak-config/
-├── infra/
-├── docs/
-├── .env.example
-├── docker-compose.yml
-└── README.md
-
-Copy
-Edit
-
-
-my-awesome-project/
-├── backend/
 │   └── app/
 │       ├── api/v1/
 │       ├── core/
@@ -80,5 +54,4 @@ my-awesome-project/
 ├── .env.example
 ├── docker-compose.yml
 └── README.md
-
 
