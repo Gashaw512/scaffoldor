@@ -33,7 +33,7 @@ scaffoldor my-awesome-project
 
 ### 📁 Creates This Structure
 
-### 📁 Creates This Structure
+
 
 ```text
 my-awesome-project/
