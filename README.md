@@ -33,6 +33,8 @@ scaffoldor my-awesome-project
 
 ### 📁 Creates This Structure
 
+### 📁 Creates This Structure
+
 my-awesome-project/
 ├── backend/
 │   └── app/
