@@ -35,6 +35,7 @@ scaffoldor my-awesome-project
 
 ### 📁 Creates This Structure
 
+```text
 my-awesome-project/
 ├── backend/
 │   └── app/
@@ -56,4 +57,5 @@ my-awesome-project/
 ├── .env.example
 ├── docker-compose.yml
 └── README.md
+
 
