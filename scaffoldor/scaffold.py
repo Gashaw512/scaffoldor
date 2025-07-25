@@ -97,6 +97,9 @@ def create_files(project_root: Path, project_name: str, dry_run: bool = False, v
             print(f"Creating file: {file_path}")
         file_path.write_text(content)
 
+    print(f"\n🎉 Project '{project_name}' scaffolded successfully!")
+    print(f"Next steps:\n  cd {project_name}\n  # Start building your secure app!\n")
+
 def create_structure(
     project_path: Path,
     template_name: str = "default",
@@ -134,3 +137,7 @@ def create_structure(
     if verbose:
         print(f"Project '{project_path.name}' scaffolded successfully!\n")
         print(f"Next steps:\n  cd {project_path}\n  # Start building your secure app!\n")
+
+
+  
+

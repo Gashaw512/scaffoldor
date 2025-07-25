@@ -1,6 +1,13 @@
+
+
+
 # 🚀 scaffoldor
 
 **A Python CLI to scaffold secure fullstack application projects (FastAPI + React + Keycloak)**
+
+[![PyPI](https://img.shields.io/pypi/v/scaffoldor)](https://pypi.org/project/scaffoldor/)
+[![License](https://img.shields.io/github/license/Gashaw512/scaffoldor)](LICENSE)
+[![Build Status](https://github.com/Gashaw512/scaffoldor/actions/workflows/ci.yml/badge.svg)](https://github.com/Gashaw512/scaffoldor/actions)
 
 ---
 
@@ -18,6 +25,17 @@ Generate a ready-to-use secure app structure with:
 
 ## ⚙️ Installation
 
+### From PyPI (official, when published)
+```bash
+pip install scaffoldor
+```
+
+### From TestPyPI (for testing latest unpublished versions)
+```bash
+pip install -i https://test.pypi.org/simple/ scaffoldor==0.1.1
+
+```
+### From Github (edditable code)
 ```bash
 git clone https://github.com/yourusername/scaffoldor.git
 cd scaffoldor
@@ -72,5 +90,35 @@ my-awesome-project/
 ├── .env.example
 ├── docker-compose.yml
 └── README.md
+```
+
+Tomorrow task
+📚 Usage Example
+bash
+Copy
+Edit
+# Install from PyPI
+pip install scaffoldor
+
+# Scaffold a new project
+scaffoldor my-app --template default --path ./apps --verbose
+✨ Bonus Polish Features
+You should:
+
+✅ Add --version to your CLI:
+
+
+parser.add_argument("-v", "--version", action="version", version="scaffoldor 0.1.0")
+✅ Add --init option to define new templates:
+
+
+scaffoldor --init my-custom-template
+
+
+Updated CLI with --version, --init, --help flags?
+
+A test case using pytest?
+
+
 
 
