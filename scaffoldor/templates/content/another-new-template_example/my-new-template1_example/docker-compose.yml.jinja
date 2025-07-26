@@ -1,0 +1,51 @@
+version: "3.8"
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile # Assuming you'll have one here
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    depends_on:
+      - db
+      - keycloak
+    volumes:
+      - ./backend:/app # Mount code for development
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile # Assuming you'll have one here
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app # Mount code for development
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: {{ project_name | lower | replace('-', '_') }}_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data # Persistent data
+  keycloak:
+    image: quay.io/keycloak/keycloak:20.0.3
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+      KC_DB: postgres
+      KC_DB_URL: jdbc:postgresql://db:5432/{{ project_name | lower | replace('-', '_') }}_db
+      KC_DB_USERNAME: user
+      KC_DB_PASSWORD: password
+      KC_HOSTNAME: localhost:8080 # For local development
+    ports:
+      - "8080:8080"
+    command: start-dev
+    depends_on:
+      - db
+
+volumes:
+  db_data:

@@ -1,3 +1,76 @@
+# pyproject.toml
 [build-system]
-requires = ["setuptools"]
+requires = ["setuptools>=61.0", "wheel", "Jinja2"] # Keep Jinja2 here, it's a build dependency for templates
 build-backend = "setuptools.build_meta"
+
+[project]
+name = "scaffoldor"
+# REMOVE THE 'version' LINE FROM HERE:
+# version = "0.1.0"
+
+# ADD A 'dynamic' FIELD AND INCLUDE 'version'
+dynamic = ["version"]
+
+description = "CLI tool to scaffold secure fullstack application structures with configurable templates."
+readme = "README.md"
+authors = [
+    { name = "Gashaw Kidanu", email = "kidanugashaw@gmail.com" }
+]
+# For the License classifier deprecation warning, consider changing:
+# license = { file = "LICENSE" }
+# classifiers = [
+#     ...
+#     "License :: OSI Approved :: MIT License", # This is the one causing the warning
+# ]
+# You can keep it for now, it's just a warning, not an error preventing build.
+# If you want to address it, you'd change 'License :: OSI Approved :: MIT License'
+# to a SPDX expression (e.g., "License :: OSI Approved :: MIT License :: MIT") or
+# simply rely on 'license = { file = "LICENSE" }'.
+# For now, let's leave it as is, as it's just a warning.
+license = { file = "LICENSE" }
+requires-python = ">=3.8"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License", # Keeping it for now, it's a warning not an error.
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Build Tools",
+    "Topic :: Software Development :: Code Generators",
+    "Topic :: Utilities",
+]
+keywords = ["scaffolding", "cli", "fullstack", "security", "project generation", "templates"]
+
+dependencies = [
+    "Jinja2>=3.1.2",
+]
+
+[project.urls]
+Homepage = "https://github.com/Gashaw512/scaffoldor"
+Documentation = "https://github.com/Gashaw512/scaffoldor/blob/main/README.md"
+Source = "https://github.com/Gashaw512/scaffoldor"
+Changelog = "https://github.com/Gashaw512/scaffoldor/releases"
+
+[project.scripts]
+scaffoldor = "scaffoldor.cli:main"
+
+# Add the [tool.setuptools.dynamic] section to actually provide the version
+[tool.setuptools.dynamic]
+version = {attr = "scaffoldor.__version__"}
+
+
+[tool.setuptools.packages.find]
+where = ["."]
+
+[tool.setuptools.package-data]
+"scaffoldor.templates" = [
+    "*.json",
+    "content/*.jinja",
+    "content/backend/*.jinja",
+    "content/frontend/*.jinja",
+    "content/frontend/src/*.jinja"
+]

@@ -1,6 +1,31 @@
-env/
+# Python
 __pycache__/
-dist/
-*.egg-info/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+*.env
 .vscode/
+.idea/
+
+# Editor files
+*.sublime-workspace
+*.sublime-project
+*.code-workspace
+
+# Build artifacts
+dist/
+build/
+*.egg-info/
 .pytest_cache/
+.coverage
+htmlcov/
+.nox/
+
+# Project specific
+!scaffoldor/templates/
+!scaffoldor/templates/*.json
+!scaffoldor/templates/content/
+!scaffoldor/templates/content/*.jinja

@@ -1,7 +1,15 @@
 {
-  "backend": ["app/api/v1", "app/core", "app/models", "app/schemas", "app/services"],
-  "frontend": ["src/components", "src/pages", "src/services", "src/context"],
-  "auth": ["keycloak-config"],
-  "infra": [],
-  "docs": []
+  "description": "Default full-stack application template with FastAPI and React.",
+  "structure": {
+    "backend": ["app/api/v1", "app/core", "app/models", "app/schemas", "app/services"],
+    "frontend": ["src/components", "src/pages", "src/services", "src/context"],
+    "auth": ["keycloak-config"],
+    "infra": [],
+    "docs": []
+  },
+  "content_files": {
+    "README.md": "README.md.jinja",
+    ".env.example": ".env.example.jinja",
+    "docker-compose.yml": "docker-compose.yml.jinja"
+  }
 }
