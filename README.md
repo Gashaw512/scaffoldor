@@ -48,7 +48,7 @@ pip install -e .
 
 ```
 ## Usage
-scaffoldor is a command-line interface tool. Here's how to use its main functionalities:
+`scaffoldor`  is a command-line interface tool. Here's how to use its main functionalities:
 ```bash
 scaffoldor my-awesome-project --path ./projects --verbose
 
@@ -78,7 +78,7 @@ Create a new boilerplate template configuration and content files based on the d
 ```bash
 scaffoldor init my-new-template
 ```
-After running this, you'll find my-new-template.json in scaffoldor/templates/ and example content in scaffoldor/templates/content/my-new-template_example/. Remember to pip install -e . again after modifying templates for them to be recognized by your installed scaffoldor tool.
+After running this, you'll find `my-new-template.json` in `scaffoldor/templates/` and example content in `scaffoldor/templates/content/my-new-template_example/.` Remember to `pip install -e . ` again after modifying templates for them to be recognized by your installed scaffoldor tool.
 
 ### CLI Options (Global Flags & Command-Specific)
 
@@ -129,33 +129,6 @@ my-awesome-project/
 ├── docker-compose.yml
 └── README.md
 ```
-
-Tomorrow task
-📚 Usage Example
-bash
-Copy
-Edit
-# Install from PyPI
-pip install scaffoldor
-
-# Scaffold a new project
-scaffoldor my-app --template default --path ./apps --verbose
-✨ Bonus Polish Features
-You should:
-
-✅ Add --version to your CLI:
-
-
-parser.add_argument("-v", "--version", action="version", version="scaffoldor 0.1.0")
-✅ Add --init option to define new templates:
-
-
-scaffoldor --init my-custom-template
-
-
-Updated CLI with --version, --init, --help flags?
-
-A test case using pytest?
 
 
 
